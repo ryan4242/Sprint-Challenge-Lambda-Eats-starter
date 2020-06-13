@@ -5,7 +5,7 @@ import './nav.css';
 const Nav = props => {
   return (
     <div className='nav-container'>
-      <h1>WeEat</h1>
+      <h1>Lambda Eats</h1>
       <nav>
         <Link className='link' to='/' >Home</Link>
       </nav>
