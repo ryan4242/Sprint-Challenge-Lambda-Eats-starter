@@ -1,0 +1,31 @@
+describe('Testing order form', function() {
+  beforeEach(function(){
+    cy.visit('http://Localhost:3000/pizza')
+  });
+
+  it('adds text, selects multiple options and submits form', function() {
+    cy.get('[data-cy=name]')
+      .type('Ryan')
+      .should('have.value', 'Ryan')
+    cy.get('[data-cy=size]')
+      .select('medium')
+      .should('have.value', 'medium')
+    cy.get('[data-cy=pep]')
+      .check()
+      .should('be.checked')
+    cy.get('[data-cy=olives]')
+      .check()
+      .should('be.checked')
+    cy.get('[data-cy=onion]')
+      .check()
+      .should('be.checked')
+    cy.get('[data-cy=jap]')
+      .check()
+      .should('be.checked')
+    cy.get('[data-cy=special]')
+      .type('get here fast!')
+      .should('have.value', 'get here fast!')
+    cy.get('[data-cy=submit]')
+      .click()
+  })
+})

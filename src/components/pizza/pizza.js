@@ -65,12 +65,13 @@ const Pizza = ({order, setOrder}) => {
     <div className='form-container'>
       <h3>Build your pizza</h3>
       <div className='img2-container'></div>
+
       <form onSubmit={handleSubmit}>
         <label htmlFor='name' >Name:</label>
-        <input id='name' type='text' name='name' value={order.name} onChange={handleChange} />
+        <input id='name' data-cy='name' type='text' name='name' value={order.name} onChange={handleChange} />
         {errors.name.length > 0 ? <p className='error'>{errors.name}</p> : null}
         <label htmlFor='size'>Taco size</label>
-        <select id='size' name='size'  value={order.size} onChange={handleChange} >
+        <select id='size' name='size' data-cy='size'  value={order.size} onChange={handleChange} >
             <option>-- selsect size--</option>
             <option value='small'>small</option>
             <option value='medium'>medium</option>
@@ -78,24 +79,24 @@ const Pizza = ({order, setOrder}) => {
           </select>
         {errors.size.length > 0 ? <p className='error'>{errors.size}</p> : null}
         <label htmlFor='pep'>
-          <input id='pep' type='checkbox' name='pep' checked={order.pep} onChange={handleChange} />
+          <input id='pep' data-cy='pep' type='checkbox' name='pep' checked={order.pep} onChange={handleChange} />
           Pepperoni
         </label>
         <label htmlFor='olives'>
-          <input id='olives' type='checkbox' name='olives' checked={order.olives} onChange={handleChange} />
+          <input id='olives' data-cy='olives' type='checkbox' name='olives' checked={order.olives} onChange={handleChange} />
           Olives
         </label>
         <label htmlFor='onion'>
-          <input id='onion' type='checkbox' name='onion' checked={order.onion} onChange={handleChange} />
+          <input id='onion' data-cy='onion' type='checkbox' name='onion' checked={order.onion} onChange={handleChange} />
           Onion 
         </label>
         <label htmlFor='jap'>
-          <input id='jap' type='checkbox' name='jap' checked={order.jap} onChange={handleChange} />
+          <input id='jap' data-cy='jap' type='checkbox' name='jap' checked={order.jap} onChange={handleChange} />
           Jalepeno
         </label>
         <label htmlFor='special'>Special instructions:</label>
-        <textarea id='special' name='special' value={order.special} onChange={handleChange} />
-        <Link to='/success'><button type='submit' disabled={buttonDisabled}>Place Order!</button></Link>
+        <textarea id='special' data-cy='special' name='special' value={order.special} onChange={handleChange} />
+        <Link to='/success'><button data-cy='submit' type='submit' disabled={buttonDisabled}>Place Order!</button></Link>
       </form>
     </div>
     
