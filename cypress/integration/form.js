@@ -27,5 +27,7 @@ describe('Testing order form', function() {
       .should('have.value', 'get here fast!')
     cy.get('[data-cy=submit]')
       .click()
+    cy.get('[data-cy=order]')
+      .click()
   })
 })

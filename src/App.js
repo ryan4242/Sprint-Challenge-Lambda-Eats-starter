@@ -6,15 +6,8 @@ import Pizza from './components/pizza/pizza';
 import Success from './components/success/Success'
 
 const App = () => {
-  const [order, setOrder] = useState({
-    name: '',
-    size: '',
-    pep: false,
-    olives: false,
-    onion: false,
-    jap: false,
-    special: ''
-  })
+  
+  const [total, setTotal] = useState([])
 
   return (
     <div>
@@ -22,10 +15,10 @@ const App = () => {
       
       <Switch>
         <Route path='/pizza'>
-          <Pizza order={order} setOrder={setOrder} />
+          <Pizza total={total} setTotal={setTotal} />
         </Route>
         <Route path='/success'>
-          <Success order={order} />
+          <Success order={total} />
         </Route>
         <Route path='/'>
           <Home />

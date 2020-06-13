@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './pizza.css';
 import * as yup from 'yup';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 const formSchema = yup.object().shape({
     name: yup.string().required('Must add name for order'),
@@ -13,8 +14,17 @@ const formSchema = yup.object().shape({
     special: yup.string(),
 })
 
-const Pizza = ({order, setOrder}) => {
-  
+const Pizza = ({total, setTotal}) => {
+
+  const [order, setOrder] = useState({
+    name: '',
+    size: '',
+    pep: false,
+    olives: false,
+    onion: false,
+    jap: false,
+    special: ''
+  })
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
@@ -36,6 +46,21 @@ const Pizza = ({order, setOrder}) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    axios.post('https://reqres.in/api/users', order).then(res => {
+      setTotal([...total, res.data])
+
+      setOrder({
+        ...order,
+        size: '',
+        pep: false,
+        olives: false,
+        onion: false,
+        jap: false,
+      })
+    })
+    .catch(err => {
+      console.log('error', err)
+    })
   }
 
   const validateChange = e => {
@@ -59,6 +84,8 @@ const Pizza = ({order, setOrder}) => {
     e.persist();
     validateChange(e);
     setOrder({...order, [e.target.name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value})
+    console.log(order);
+    console.log(buttonDisabled);
   }
 
   return (
@@ -96,8 +123,9 @@ const Pizza = ({order, setOrder}) => {
         </label>
         <label htmlFor='special'>Special instructions:</label>
         <textarea id='special' data-cy='special' name='special' value={order.special} onChange={handleChange} />
-        <Link to='/success'><button data-cy='submit' type='submit' disabled={buttonDisabled}>Place Order!</button></Link>
+        <button type='submit' data-cy='submit' disabled={buttonDisabled}>Add your Pizza</button>
       </form>
+      {total.length > 0 ? (<Link to='/success'><button data-cy='order'>Place Order!</button></Link>) : null}
     </div>
     
   )
