@@ -1,0 +1,32 @@
+.form-container {
+  width: 50vw;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.img2-container {
+  background-image: url('../../Assets/Pizza2.jpg');
+  background-size: cover;
+  height: 33vh;
+}
+
+form {
+  text-align: left;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+ form button {
+   width: 100%;
+   padding: 0;
+   border: 1px solid #000;
+ }
+
+ .error {
+   color: red;
+   font-size: .75rem;
+ }
